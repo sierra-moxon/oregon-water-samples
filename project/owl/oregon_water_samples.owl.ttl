@@ -1,4 +1,3 @@
-@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix oregon_water_samples: <https://w3id.org/sierra-moxon/oregon-water-samples/> .
@@ -8,6 +7,9 @@
 @prefix schema1: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+oregon_water_samples:SampleTypeEnum a owl:Class,
+        linkml:EnumDefinition .
 
 oregon_water_samples:BioSampleCollection a owl:Class,
         linkml:ClassDefinition ;
@@ -19,125 +21,104 @@ oregon_water_samples:BioSampleCollection a owl:Class,
             owl:allValuesFrom oregon_water_samples:BioSample ;
             owl:onProperty oregon_water_samples:entries ] ;
     skos:definition "A holder for BioSample objects" ;
-    skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
-
-oregon_water_samples:BioSample a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "BioSample" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom oregon_water_samples:PersonStatus ;
-            owl:onProperty oregon_water_samples:vital_status ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:primary_email ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:onDatatype xsd:string ;
-                    owl:withRestrictions ( [ xsd:pattern "^\\S+@[\\S+\\.]+\\S+" ] ) ] ;
-            owl:onProperty oregon_water_samples:primary_email ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oregon_water_samples:vital_status ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oregon_water_samples:birth_date ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
-            owl:onProperty oregon_water_samples:age_in_years ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:vital_status ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oregon_water_samples:primary_email ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:age_in_years ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oregon_water_samples:age_in_years ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:birth_date ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Date ;
-            owl:onProperty oregon_water_samples:birth_date ],
-        oregon_water_samples:NamedThing ;
-    skos:definition "Represents a BioSample" ;
+    skos:exactMatch oregon_water_samples:BioSampleCollection ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
 oregon_water_samples:NamedThing a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "NamedThing" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uriorcurie ;
+            owl:onProperty oregon_water_samples:id ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty oregon_water_samples:id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oregon_water_samples:id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oregon_water_samples:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oregon_water_samples:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oregon_water_samples:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oregon_water_samples:description ] ;
+            owl:onProperty oregon_water_samples:id ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
-PATO:0001421 a owl:Class,
-        oregon_water_samples:PersonStatus ;
-    rdfs:label "ALIVE" ;
-    rdfs:subClassOf oregon_water_samples:PersonStatus .
+oregon_water_samples:BioSample a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "BioSample" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oregon_water_samples:latitude ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Uriorcurie [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^NCBITaxon:\\d+$" ] ) ] ) ] ;
+            owl:onProperty oregon_water_samples:bacteria ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oregon_water_samples:latitude ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Float ;
+            owl:onProperty oregon_water_samples:depth ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oregon_water_samples:depth ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?)$" ] ) ] ) ] ;
+            owl:onProperty oregon_water_samples:latitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oregon_water_samples:bacteria ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oregon_water_samples:longitude ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oregon_water_samples:sample_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oregon_water_samples:sample_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oregon_water_samples:longitude ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uriorcurie ;
+            owl:onProperty oregon_water_samples:sample_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$" ] ) ] ) ] ;
+            owl:onProperty oregon_water_samples:longitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oregon_water_samples:depth ],
+        oregon_water_samples:NamedThing ;
+    skos:definition "Represents a BioSample" ;
+    skos:exactMatch oregon_water_samples:BioSample ;
+    skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
-PATO:0001422 a owl:Class,
-        oregon_water_samples:PersonStatus ;
-    rdfs:label "DEAD" ;
-    rdfs:subClassOf oregon_water_samples:PersonStatus .
-
-<https://w3id.org/sierra-moxon/oregon-water-samples/PersonStatus#UNKNOWN> a owl:Class,
-        oregon_water_samples:PersonStatus ;
-    rdfs:label "UNKNOWN" ;
-    rdfs:subClassOf oregon_water_samples:PersonStatus .
+oregon_water_samples:bacteria a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "bacteria" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( linkml:Uriorcurie [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^NCBITaxon:\\d+$" ] ) ] ) ] ;
+    skos:definition "The bacteria, represented by a NCBITaxon identifier, present in a sample" ;
+    skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
 oregon_water_samples:entries a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "entries" ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
-oregon_water_samples:age_in_years a owl:ObjectProperty,
+oregon_water_samples:depth a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "age_in_years" ;
-    rdfs:range linkml:Integer ;
-    skos:definition "Number of years since birth" ;
-    skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
-
-oregon_water_samples:birth_date a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "birth_date" ;
-    rdfs:range linkml:Date ;
-    skos:definition "Date on which a person is born" ;
-    skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
-
-oregon_water_samples:description a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "description" ;
-    skos:definition "A human-readable description for a thing" ;
+    rdfs:label "depth" ;
+    rdfs:range linkml:Float ;
+    skos:definition "The depth of the water sample in centimeters" ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
 oregon_water_samples:id a owl:ObjectProperty,
@@ -147,36 +128,37 @@ oregon_water_samples:id a owl:ObjectProperty,
     skos:definition "A unique identifier for a thing" ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
-oregon_water_samples:name a owl:ObjectProperty,
+oregon_water_samples:latitude a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "name" ;
-    skos:definition "A human-readable name for a thing" ;
+    rdfs:label "latitude" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?)$" ] ) ] ) ] ;
+    skos:definition "The latitude of the water sample" ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
-oregon_water_samples:primary_email a owl:ObjectProperty,
+oregon_water_samples:longitude a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "primary_email" ;
-    skos:definition "The main email address of a person" ;
+    rdfs:label "longitude" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$" ] ) ] ) ] ;
+    skos:definition "The longitude of the water sample" ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 
-oregon_water_samples:vital_status a owl:ObjectProperty,
+oregon_water_samples:sample_type a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "vital_status" ;
-    rdfs:range oregon_water_samples:PersonStatus ;
-    skos:definition "living or dead status" ;
+    rdfs:label "sample_type" ;
+    rdfs:range linkml:Uriorcurie ;
+    skos:definition "The type of sample" ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
-
-oregon_water_samples:PersonStatus a owl:Class,
-        linkml:EnumDefinition ;
-    owl:unionOf ( PATO:0001421 PATO:0001422 <https://w3id.org/sierra-moxon/oregon-water-samples/PersonStatus#UNKNOWN> ) ;
-    linkml:permissible_values PATO:0001421,
-        PATO:0001422,
-        <https://w3id.org/sierra-moxon/oregon-water-samples/PersonStatus#UNKNOWN> .
 
 <https://w3id.org/sierra-moxon/oregon-water-samples> a owl:Ontology ;
     rdfs:label "oregon-water-samples" ;
     dcterms:license "MIT" ;
     dcterms:title "oregon-water-samples" ;
     rdfs:seeAlso <https://sierra-moxon.github.io/oregon-water-samples> ;
-    skos:definition "This is the project description." .
+    skos:definition "Sample LinkML project setup for 2024 paper figures" .
 

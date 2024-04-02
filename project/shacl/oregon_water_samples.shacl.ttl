@@ -1,4 +1,3 @@
-@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix oregon_water_samples: <https://w3id.org/sierra-moxon/oregon-water-samples/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix schema1: <http://schema.org/> .
@@ -9,17 +8,7 @@ schema1:Thing a sh:NodeShape ;
     sh:closed true ;
     sh:description "A generic grouping for any identifiable entity" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path schema1:name ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path schema1:description ],
-        [ sh:description "A unique identifier for a thing" ;
+    sh:property [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path schema1:identifier ] ;
@@ -39,41 +28,35 @@ oregon_water_samples:BioSample a sh:NodeShape ;
     sh:closed true ;
     sh:description "Represents a BioSample" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path schema1:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "The main email address of a person" ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:email ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Number of years since birth" ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path oregon_water_samples:age_in_years ],
-        [ sh:description "living or dead status" ;
-            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
+    sh:property [ sh:description "The bacteria, represented by a NCBITaxon identifier, present in a sample" ;
+            sh:order 4 ;
+            sh:path oregon_water_samples:bacteria ;
+            sh:pattern "^NCBITaxon:\\d+$" ],
+        [ sh:datatype xsd:float ;
+            sh:description "The longitude of the water sample" ;
             sh:maxCount 1 ;
             sh:order 3 ;
-            sh:path oregon_water_samples:vital_status ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path schema1:name ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date on which a person is born" ;
+            sh:path oregon_water_samples:longitude ;
+            sh:pattern "^[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$" ],
+        [ sh:description "The type of sample" ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path schema1:birthDate ],
+            sh:path oregon_water_samples:sample_type ],
+        [ sh:datatype xsd:float ;
+            sh:description "The depth of the water sample in centimeters" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path oregon_water_samples:depth ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:identifier ] ;
+            sh:order 5 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:float ;
+            sh:description "The latitude of the water sample" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path oregon_water_samples:latitude ;
+            sh:pattern "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?)$" ] ;
     sh:targetClass oregon_water_samples:BioSample .
 

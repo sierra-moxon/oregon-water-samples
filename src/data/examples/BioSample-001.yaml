@@ -2,6 +2,8 @@
 ---
 entries:
   - id: example:BioSample001
-    name: foo bar
-    primary_email: foo.bar@example.com
-    age_in_years: 33
+    depth: 0.5
+    sample_type: ENVO:00002006
+    latitude: 45.5
+    longitude: -122.5
+    bacteria: NCBITaxon:562

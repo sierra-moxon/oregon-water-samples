@@ -2,8 +2,7 @@
 id: https://w3id.org/sierra-moxon/oregon-water-samples
 name: oregon-water-samples
 title: oregon-water-samples
-description: |-
-  This is the project description.
+description: Sample LinkML project setup for 2024 paper figures
 license: MIT
 see_also:
   - https://sierra-moxon.github.io/oregon-water-samples
@@ -13,7 +12,6 @@ prefixes:
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/
   schema: http://schema.org/
-  PATO: http://purl.obolibrary.org/obo/PATO_
   example: https://example.org/
 default_prefix: oregon_water_samples
 default_range: string
@@ -28,24 +26,22 @@ classes:
       A generic grouping for any identifiable entity
     slots:
       - id
-      - name
-      - description
     class_uri: schema:Thing
 
   BioSample:
+    class_uri: oregon_water_samples:BioSample
     is_a: NamedThing
     description: >-
       Represents a BioSample
     slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
+      - depth
+      - sample_type
+      - latitude
+      - longitude
+      - bacteria
 
   BioSampleCollection:
+    class_uri: oregon_water_samples:BioSampleCollection
     tree_root: true
     description: >-
       A holder for BioSample objects
@@ -61,36 +57,35 @@ slots:
     slot_uri: schema:identifier
     range: uriorcurie
     description: A unique identifier for a thing
-  name:
-    slot_uri: schema:name
-    description: A human-readable name for a thing
-  description:
-    slot_uri: schema:description
-    description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
+
+  depth:
+    slot_uri: oregon_water_samples:depth
+    range: float
+    description: The depth of the water sample in centimeters
+  latitude:
+    slot_uri: oregon_water_samples:latitude
+    range: float
+    pattern: ^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$
+    description: The latitude of the water sample
+  longitude:
+    slot_uri: oregon_water_samples:longitude
+    range: float
+    pattern: ^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$
+    description: The longitude of the water sample
+  sample_type:
+    slot_uri: oregon_water_samples:sample_type
+    range: uriorcurie
+    description: The type of sample
+  bacteria:
+    slot_uri: oregon_water_samples:bacteria
+    range: uriorcurie
+    pattern: ^NCBITaxon:\d+$
+    description: The bacteria, represented by a NCBITaxon identifier, present in a sample
+    multivalued: true
 
 enums:
-  PersonStatus:
-    permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
+  SampleTypeEnum:
+    description: >-
+      The type of sample
+    reachable_from:
+      source_ontology: obo:envo

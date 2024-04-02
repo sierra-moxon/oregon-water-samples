@@ -1,6 +1,6 @@
 {
   "name": "oregon-water-samples",
-  "description": "This is the project description.",
+  "description": "Sample LinkML project setup for 2024 paper figures",
   "title": "oregon-water-samples",
   "see_also": [
     "https://sierra-moxon.github.io/oregon-water-samples"
@@ -26,10 +26,6 @@
     {
       "prefix_prefix": "schema",
       "prefix_reference": "http://schema.org/"
-    },
-    {
-      "prefix_prefix": "PATO",
-      "prefix_reference": "http://purl.obolibrary.org/obo/PATO_"
     },
     {
       "prefix_prefix": "example",
@@ -350,28 +346,13 @@
   ],
   "enums": [
     {
-      "name": "PersonStatus",
-      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/PersonStatus",
+      "name": "SampleTypeEnum",
+      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/SampleTypeEnum",
+      "description": "The type of sample",
       "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
-      "permissible_values": [
-        {
-          "text": "ALIVE",
-          "description": "the person is living",
-          "meaning": "PATO:0001421"
-        },
-        {
-          "text": "DEAD",
-          "description": "the person is deceased",
-          "meaning": "PATO:0001422"
-        },
-        {
-          "text": "UNKNOWN",
-          "description": "the vital status is not known",
-          "todos": [
-            "map this to an ontology"
-          ]
-        }
-      ]
+      "reachable_from": {
+        "source_ontology": "obo:envo"
+      }
     }
   ],
   "slots": [
@@ -394,93 +375,87 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "name",
-      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/name",
-      "description": "A human-readable name for a thing",
+      "name": "depth",
+      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/depth",
+      "description": "The depth of the water sample in centimeters",
       "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
       "mappings": [
-        "http://schema.org/name"
+        "https://w3id.org/sierra-moxon/oregon-water-samples/depth"
       ],
-      "slot_uri": "http://schema.org/name",
-      "owner": "NamedThing",
-      "domain_of": [
-        "NamedThing"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "description",
-      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/description",
-      "description": "A human-readable description for a thing",
-      "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
-      "mappings": [
-        "http://schema.org/description"
-      ],
-      "slot_uri": "http://schema.org/description",
-      "owner": "NamedThing",
-      "domain_of": [
-        "NamedThing"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "primary_email",
-      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/primary_email",
-      "description": "The main email address of a person",
-      "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "slot_uri": "http://schema.org/email",
+      "slot_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/depth",
       "owner": "BioSample",
       "domain_of": [
         "BioSample"
       ],
-      "range": "string",
+      "range": "float",
       "@type": "SlotDefinition"
     },
     {
-      "name": "birth_date",
-      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/birth_date",
-      "description": "Date on which a person is born",
+      "name": "latitude",
+      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/latitude",
+      "description": "The latitude of the water sample",
       "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
       "mappings": [
-        "http://schema.org/birthDate"
+        "https://w3id.org/sierra-moxon/oregon-water-samples/latitude"
       ],
-      "slot_uri": "http://schema.org/birthDate",
+      "slot_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/latitude",
       "owner": "BioSample",
       "domain_of": [
         "BioSample"
       ],
-      "range": "date",
+      "range": "float",
+      "pattern": "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?)$",
       "@type": "SlotDefinition"
     },
     {
-      "name": "age_in_years",
-      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/age_in_years",
-      "description": "Number of years since birth",
+      "name": "longitude",
+      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/longitude",
+      "description": "The longitude of the water sample",
       "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
-      "slot_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/age_in_years",
+      "mappings": [
+        "https://w3id.org/sierra-moxon/oregon-water-samples/longitude"
+      ],
+      "slot_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/longitude",
       "owner": "BioSample",
       "domain_of": [
         "BioSample"
       ],
-      "range": "integer",
+      "range": "float",
+      "pattern": "^[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
       "@type": "SlotDefinition"
     },
     {
-      "name": "vital_status",
-      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/vital_status",
-      "description": "living or dead status",
+      "name": "sample_type",
+      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/sample_type",
+      "description": "The type of sample",
       "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
-      "slot_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/vital_status",
+      "mappings": [
+        "https://w3id.org/sierra-moxon/oregon-water-samples/sample_type"
+      ],
+      "slot_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/sample_type",
       "owner": "BioSample",
       "domain_of": [
         "BioSample"
       ],
-      "range": "PersonStatus",
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "bacteria",
+      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/bacteria",
+      "description": "The bacteria, represented by a NCBITaxon identifier, present in a sample",
+      "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
+      "mappings": [
+        "https://w3id.org/sierra-moxon/oregon-water-samples/bacteria"
+      ],
+      "slot_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/bacteria",
+      "multivalued": true,
+      "owner": "BioSample",
+      "domain_of": [
+        "BioSample"
+      ],
+      "range": "uriorcurie",
+      "pattern": "^NCBITaxon:\\d+$",
       "@type": "SlotDefinition"
     },
     {
@@ -496,28 +471,6 @@
       "range": "BioSample",
       "inlined": true,
       "@type": "SlotDefinition"
-    },
-    {
-      "name": "BioSample_primary_email",
-      "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/primary_email",
-      "description": "The main email address of a person",
-      "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "is_a": "primary_email",
-      "domain": "BioSample",
-      "slot_uri": "http://schema.org/email",
-      "alias": "primary_email",
-      "owner": "BioSample",
-      "domain_of": [
-        "BioSample"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "primary_email",
-      "range": "string",
-      "pattern": "^\\S+@[\\S+\\.]+\\S+",
-      "@type": "SlotDefinition"
     }
   ],
   "classes": [
@@ -530,9 +483,7 @@
         "schema:Thing"
       ],
       "slots": [
-        "id",
-        "name",
-        "description"
+        "id"
       ],
       "slot_usage": {},
       "class_uri": "http://schema.org/Thing",
@@ -543,15 +494,17 @@
       "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/BioSample",
       "description": "Represents a BioSample",
       "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
+      "mappings": [
+        "oregon_water_samples:BioSample"
+      ],
       "is_a": "NamedThing",
       "slots": [
         "id",
-        "name",
-        "description",
-        "BioSample_primary_email",
-        "birth_date",
-        "age_in_years",
-        "vital_status"
+        "depth",
+        "sample_type",
+        "latitude",
+        "longitude",
+        "bacteria"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/BioSample",
@@ -562,6 +515,9 @@
       "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/BioSampleCollection",
       "description": "A holder for BioSample objects",
       "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
+      "mappings": [
+        "oregon_water_samples:BioSampleCollection"
+      ],
       "slots": [
         "bioSampleCollection__entries"
       ],
@@ -582,9 +538,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "oregon_water_samples.yaml",
-  "source_file_date": "2024-04-02T14:58:36",
-  "source_file_size": 2265,
-  "generation_date": "2024-04-02T14:59:13",
+  "source_file_date": "2024-04-02T15:23:50",
+  "source_file_size": 2291,
+  "generation_date": "2024-04-02T15:23:53",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/oregon_water_samples.context.jsonld",

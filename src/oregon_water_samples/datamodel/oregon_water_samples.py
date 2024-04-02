@@ -1,9 +1,9 @@
 # Auto generated from oregon_water_samples.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-04-02T14:59:13
+# Generation date: 2024-04-02T15:23:53
 # Schema: oregon-water-samples
 #
 # id: https://w3id.org/sierra-moxon/oregon-water-samples
-# description: This is the project description.
+# description: Sample LinkML project setup for 2024 paper figures
 # license: MIT
 
 import dataclasses
@@ -22,8 +22,8 @@ from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.linkml_model.types import Date, Integer, String, Uriorcurie
-from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDate
+from linkml_runtime.linkml_model.types import Float, Uriorcurie
+from linkml_runtime.utils.metamodelcore import URIorCURIE
 
 metamodel_version = "1.7.0"
 version = None
@@ -32,7 +32,6 @@ version = None
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
-PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/')
 EXAMPLE = CurieNamespace('example', 'https://example.org/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
@@ -65,20 +64,12 @@ class NamedThing(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OREGON_WATER_SAMPLES.NamedThing
 
     id: Union[str, NamedThingId] = None
-    name: Optional[str] = None
-    description: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
         if not isinstance(self.id, NamedThingId):
             self.id = NamedThingId(self.id)
-
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
 
         super().__post_init__(**kwargs)
 
@@ -96,10 +87,11 @@ class BioSample(NamedThing):
     class_model_uri: ClassVar[URIRef] = OREGON_WATER_SAMPLES.BioSample
 
     id: Union[str, BioSampleId] = None
-    primary_email: Optional[str] = None
-    birth_date: Optional[Union[str, XSDDate]] = None
-    age_in_years: Optional[int] = None
-    vital_status: Optional[Union[str, "PersonStatus"]] = None
+    depth: Optional[float] = None
+    sample_type: Optional[Union[str, URIorCURIE]] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    bacteria: Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -107,17 +99,21 @@ class BioSample(NamedThing):
         if not isinstance(self.id, BioSampleId):
             self.id = BioSampleId(self.id)
 
-        if self.primary_email is not None and not isinstance(self.primary_email, str):
-            self.primary_email = str(self.primary_email)
+        if self.depth is not None and not isinstance(self.depth, float):
+            self.depth = float(self.depth)
 
-        if self.birth_date is not None and not isinstance(self.birth_date, XSDDate):
-            self.birth_date = XSDDate(self.birth_date)
+        if self.sample_type is not None and not isinstance(self.sample_type, URIorCURIE):
+            self.sample_type = URIorCURIE(self.sample_type)
 
-        if self.age_in_years is not None and not isinstance(self.age_in_years, int):
-            self.age_in_years = int(self.age_in_years)
+        if self.latitude is not None and not isinstance(self.latitude, float):
+            self.latitude = float(self.latitude)
 
-        if self.vital_status is not None and not isinstance(self.vital_status, PersonStatus):
-            self.vital_status = PersonStatus(self.vital_status)
+        if self.longitude is not None and not isinstance(self.longitude, float):
+            self.longitude = float(self.longitude)
+
+        if not isinstance(self.bacteria, list):
+            self.bacteria = [self.bacteria] if self.bacteria is not None else []
+        self.bacteria = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.bacteria]
 
         super().__post_init__(**kwargs)
 
@@ -143,22 +139,13 @@ class BioSampleCollection(YAMLRoot):
 
 
 # Enumerations
-class PersonStatus(EnumDefinitionImpl):
-
-    ALIVE = PermissibleValue(
-        text="ALIVE",
-        description="the person is living",
-        meaning=PATO["0001421"])
-    DEAD = PermissibleValue(
-        text="DEAD",
-        description="the person is deceased",
-        meaning=PATO["0001422"])
-    UNKNOWN = PermissibleValue(
-        text="UNKNOWN",
-        description="the vital status is not known")
-
+class SampleTypeEnum(EnumDefinitionImpl):
+    """
+    The type of sample
+    """
     _defn = EnumDefinition(
-        name="PersonStatus",
+        name="SampleTypeEnum",
+        description="The type of sample",
     )
 
 # Slots
@@ -168,27 +155,23 @@ class slots:
 slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
                    model_uri=OREGON_WATER_SAMPLES.id, domain=None, range=URIRef)
 
-slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
-                   model_uri=OREGON_WATER_SAMPLES.name, domain=None, range=Optional[str])
+slots.depth = Slot(uri=OREGON_WATER_SAMPLES.depth, name="depth", curie=OREGON_WATER_SAMPLES.curie('depth'),
+                   model_uri=OREGON_WATER_SAMPLES.depth, domain=None, range=Optional[float])
 
-slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
-                   model_uri=OREGON_WATER_SAMPLES.description, domain=None, range=Optional[str])
+slots.latitude = Slot(uri=OREGON_WATER_SAMPLES.latitude, name="latitude", curie=OREGON_WATER_SAMPLES.curie('latitude'),
+                   model_uri=OREGON_WATER_SAMPLES.latitude, domain=None, range=Optional[float],
+                   pattern=re.compile(r'^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$'))
 
-slots.primary_email = Slot(uri=SCHEMA.email, name="primary_email", curie=SCHEMA.curie('email'),
-                   model_uri=OREGON_WATER_SAMPLES.primary_email, domain=None, range=Optional[str])
+slots.longitude = Slot(uri=OREGON_WATER_SAMPLES.longitude, name="longitude", curie=OREGON_WATER_SAMPLES.curie('longitude'),
+                   model_uri=OREGON_WATER_SAMPLES.longitude, domain=None, range=Optional[float],
+                   pattern=re.compile(r'^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$'))
 
-slots.birth_date = Slot(uri=SCHEMA.birthDate, name="birth_date", curie=SCHEMA.curie('birthDate'),
-                   model_uri=OREGON_WATER_SAMPLES.birth_date, domain=None, range=Optional[Union[str, XSDDate]])
+slots.sample_type = Slot(uri=OREGON_WATER_SAMPLES.sample_type, name="sample_type", curie=OREGON_WATER_SAMPLES.curie('sample_type'),
+                   model_uri=OREGON_WATER_SAMPLES.sample_type, domain=None, range=Optional[Union[str, URIorCURIE]])
 
-slots.age_in_years = Slot(uri=OREGON_WATER_SAMPLES.age_in_years, name="age_in_years", curie=OREGON_WATER_SAMPLES.curie('age_in_years'),
-                   model_uri=OREGON_WATER_SAMPLES.age_in_years, domain=None, range=Optional[int])
-
-slots.vital_status = Slot(uri=OREGON_WATER_SAMPLES.vital_status, name="vital_status", curie=OREGON_WATER_SAMPLES.curie('vital_status'),
-                   model_uri=OREGON_WATER_SAMPLES.vital_status, domain=None, range=Optional[Union[str, "PersonStatus"]])
+slots.bacteria = Slot(uri=OREGON_WATER_SAMPLES.bacteria, name="bacteria", curie=OREGON_WATER_SAMPLES.curie('bacteria'),
+                   model_uri=OREGON_WATER_SAMPLES.bacteria, domain=None, range=Optional[Union[Union[str, URIorCURIE], List[Union[str, URIorCURIE]]]],
+                   pattern=re.compile(r'^NCBITaxon:\d+$'))
 
 slots.bioSampleCollection__entries = Slot(uri=OREGON_WATER_SAMPLES.entries, name="bioSampleCollection__entries", curie=OREGON_WATER_SAMPLES.curie('entries'),
                    model_uri=OREGON_WATER_SAMPLES.bioSampleCollection__entries, domain=None, range=Optional[Union[Dict[Union[str, BioSampleId], Union[dict, BioSample]], List[Union[dict, BioSample]]]])
-
-slots.BioSample_primary_email = Slot(uri=SCHEMA.email, name="BioSample_primary_email", curie=SCHEMA.curie('email'),
-                   model_uri=OREGON_WATER_SAMPLES.BioSample_primary_email, domain=BioSample, range=Optional[str],
-                   pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
