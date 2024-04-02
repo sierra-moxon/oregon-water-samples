@@ -91,7 +91,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://sierra-moxon.github.io/oregon-water-samples/PersonStatus/</loc>
+         <loc>https://sierra-moxon.github.io/oregon-water-samples/SampleTypeEnum/</loc>
          <lastmod>2024-04-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -126,17 +126,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://sierra-moxon.github.io/oregon-water-samples/age_in_years/</loc>
+         <loc>https://sierra-moxon.github.io/oregon-water-samples/bacteria/</loc>
          <lastmod>2024-04-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://sierra-moxon.github.io/oregon-water-samples/birth_date/</loc>
-         <lastmod>2024-04-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://sierra-moxon.github.io/oregon-water-samples/description/</loc>
+         <loc>https://sierra-moxon.github.io/oregon-water-samples/depth/</loc>
          <lastmod>2024-04-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -151,7 +146,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://sierra-moxon.github.io/oregon-water-samples/name/</loc>
+         <loc>https://sierra-moxon.github.io/oregon-water-samples/latitude/</loc>
+         <lastmod>2024-04-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sierra-moxon.github.io/oregon-water-samples/longitude/</loc>
          <lastmod>2024-04-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -161,12 +161,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://sierra-moxon.github.io/oregon-water-samples/primary_email/</loc>
-         <lastmod>2024-04-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://sierra-moxon.github.io/oregon-water-samples/vital_status/</loc>
+         <loc>https://sierra-moxon.github.io/oregon-water-samples/sample_type/</loc>
          <lastmod>2024-04-02</lastmod>
          <changefreq>daily</changefreq>
     </url>

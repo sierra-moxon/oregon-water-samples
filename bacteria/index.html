@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/oregon-water-samples/vital_status/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/oregon-water-samples/bacteria/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: vital_status - oregon-water-samples</title>
+        <title>Slot: bacteria - oregon-water-samples</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-vital_status" class="md-skip">
+        <a href="#slot-bacteria" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: vital_status
+              Slot: bacteria
             
           </span>
         </div>
@@ -310,15 +310,15 @@
                 
                   
 
-  <a href="https://github.com/sierra-moxon/oregon-water-samples/edit/master/docs/vital_status.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/sierra-moxon/oregon-water-samples/edit/master/docs/bacteria.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-vital_status">Slot: vital_status</h1>
-<p><em>living or dead status</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/oregon-water-samples/vital_status">oregon_water_samples:vital_status</a></p>
+<h1 id="slot-bacteria">Slot: bacteria</h1>
+<p><em>The bacteria, represented by a NCBITaxon identifier, present in a sample</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/oregon-water-samples/bacteria">oregon_water_samples:bacteria</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -340,7 +340,15 @@
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../PersonStatus/">PersonStatus</a></li>
+<li>
+<p>Range: <a href="../Uriorcurie/">Uriorcurie</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
+<li>
+<p>Regex pattern: <code>^NCBITaxon:\d+$</code></p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -350,14 +358,17 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: vital_status
-description: living or dead status
+<pre><code class="language-yaml">name: bacteria
+description: The bacteria, represented by a NCBITaxon identifier, present in a sample
 from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
 rank: 1000
-alias: vital_status
+slot_uri: oregon_water_samples:bacteria
+multivalued: true
+alias: bacteria
 domain_of:
 - BioSample
-range: PersonStatus
+range: uriorcurie
+pattern: ^NCBITaxon:\d+$
 
 </code></pre>
 

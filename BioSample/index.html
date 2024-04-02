@@ -211,21 +211,17 @@
     class BioSample
       NamedThing &lt;|-- BioSample
 
-      BioSample : age_in_years
+      BioSample : bacteria
 
-      BioSample : birth_date
-
-      BioSample : description
+      BioSample : depth
 
       BioSample : id
 
-      BioSample : name
+      BioSample : latitude
 
-      BioSample : primary_email
+      BioSample : longitude
 
-      BioSample : vital_status
-
-          BioSample --&gt; PersonStatus : vital_status
+      BioSample : sample_type
 
 
 </div>
@@ -248,45 +244,39 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../primary_email/">primary_email</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The main email address of a person</td>
+<td><a href="../depth/">depth</a></td>
+<td>0..1 <br/> <a href="../Float/">Float</a></td>
+<td>The depth of the water sample in centimeters</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../birth_date/">birth_date</a></td>
-<td>0..1 <br/> <a href="../Date/">Date</a></td>
-<td>Date on which a person is born</td>
+<td><a href="../sample_type/">sample_type</a></td>
+<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>The type of sample</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../age_in_years/">age_in_years</a></td>
-<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
-<td>Number of years since birth</td>
+<td><a href="../latitude/">latitude</a></td>
+<td>0..1 <br/> <a href="../Float/">Float</a></td>
+<td>The latitude of the water sample</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../vital_status/">vital_status</a></td>
-<td>0..1 <br/> <a href="../PersonStatus/">PersonStatus</a></td>
-<td>living or dead status</td>
+<td><a href="../longitude/">longitude</a></td>
+<td>0..1 <br/> <a href="../Float/">Float</a></td>
+<td>The longitude of the water sample</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../bacteria/">bacteria</a></td>
+<td>0..* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>The bacteria, represented by a NCBITaxon identifier, present in a sample</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../id/">id</a></td>
 <td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for a thing</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../name/">name</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable name for a thing</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../description/">description</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable description for a thing</td>
 <td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 </tbody>
@@ -343,16 +333,12 @@ description: Represents a BioSample
 from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
 is_a: NamedThing
 slots:
-- primary_email
-- birth_date
-- age_in_years
-- vital_status
-slot_usage:
-  primary_email:
-    name: primary_email
-    domain_of:
-    - BioSample
-    pattern: ^\S+@[\S+\.]+\S+
+- depth
+- sample_type
+- latitude
+- longitude
+- bacteria
+class_uri: oregon_water_samples:BioSample
 
 </code></pre>
 </details>
@@ -362,56 +348,67 @@ slot_usage:
 description: Represents a BioSample
 from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
 is_a: NamedThing
-slot_usage:
-  primary_email:
-    name: primary_email
-    domain_of:
-    - BioSample
-    pattern: ^\S+@[\S+\.]+\S+
 attributes:
-  primary_email:
-    name: primary_email
-    description: The main email address of a person
+  depth:
+    name: depth
+    description: The depth of the water sample in centimeters
     from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
     rank: 1000
-    slot_uri: schema:email
-    alias: primary_email
+    slot_uri: oregon_water_samples:depth
+    alias: depth
     owner: BioSample
     domain_of:
     - BioSample
-    range: string
-    pattern: ^\S+@[\S+\.]+\S+
-  birth_date:
-    name: birth_date
-    description: Date on which a person is born
+    range: float
+  sample_type:
+    name: sample_type
+    description: The type of sample
     from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
     rank: 1000
-    slot_uri: schema:birthDate
-    alias: birth_date
+    slot_uri: oregon_water_samples:sample_type
+    alias: sample_type
     owner: BioSample
     domain_of:
     - BioSample
-    range: date
-  age_in_years:
-    name: age_in_years
-    description: Number of years since birth
+    range: uriorcurie
+  latitude:
+    name: latitude
+    description: The latitude of the water sample
     from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
     rank: 1000
-    alias: age_in_years
+    slot_uri: oregon_water_samples:latitude
+    alias: latitude
     owner: BioSample
     domain_of:
     - BioSample
-    range: integer
-  vital_status:
-    name: vital_status
-    description: living or dead status
+    range: float
+    pattern: ^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$
+  longitude:
+    name: longitude
+    description: The longitude of the water sample
     from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
     rank: 1000
-    alias: vital_status
+    slot_uri: oregon_water_samples:longitude
+    alias: longitude
     owner: BioSample
     domain_of:
     - BioSample
-    range: PersonStatus
+    range: float
+    pattern: ^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$
+  bacteria:
+    name: bacteria
+    description: The bacteria, represented by a NCBITaxon identifier, present in a
+      sample
+    from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
+    rank: 1000
+    slot_uri: oregon_water_samples:bacteria
+    multivalued: true
+    alias: bacteria
+    owner: BioSample
+    domain_of:
+    - BioSample
+    range: uriorcurie
+    pattern: ^NCBITaxon:\d+$
   id:
     name: id
     description: A unique identifier for a thing
@@ -425,28 +422,7 @@ attributes:
     - NamedThing
     range: uriorcurie
     required: true
-  name:
-    name: name
-    description: A human-readable name for a thing
-    from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
-    rank: 1000
-    slot_uri: schema:name
-    alias: name
-    owner: BioSample
-    domain_of:
-    - NamedThing
-    range: string
-  description:
-    name: description
-    description: A human-readable description for a thing
-    from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
-    rank: 1000
-    slot_uri: schema:description
-    alias: description
-    owner: BioSample
-    domain_of:
-    - NamedThing
-    range: string
+class_uri: oregon_water_samples:BioSample
 
 </code></pre>
 </details>
