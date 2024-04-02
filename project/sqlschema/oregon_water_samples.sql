@@ -1,6 +1,6 @@
 -- # Class: "NamedThing" Description: "A generic grouping for any identifiable entity"
 --     * Slot: id Description: A unique identifier for a thing
--- # Class: "BioSample" Description: "Represents a BioSample"
+-- # Class: "BioSample" Description: "A hypothetical collection of attributes that represent a sample of water from a specific  location and depth with associated bacterial composition."
 --     * Slot: depth Description: The depth of the water sample in centimeters
 --     * Slot: sample_type Description: The type of sample
 --     * Slot: latitude Description: The latitude of the water sample

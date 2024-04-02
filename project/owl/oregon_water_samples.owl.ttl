@@ -28,13 +28,13 @@ oregon_water_samples:NamedThing a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "NamedThing" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oregon_water_samples:id ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty oregon_water_samples:id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty oregon_water_samples:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uriorcurie ;
             owl:onProperty oregon_water_samples:id ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing ;
@@ -44,20 +44,38 @@ oregon_water_samples:BioSample a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "BioSample" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uriorcurie ;
+            owl:onProperty oregon_water_samples:sample_type ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oregon_water_samples:latitude ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:Uriorcurie [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^NCBITaxon:\\d+$" ] ) ] ) ] ;
-            owl:onProperty oregon_water_samples:bacteria ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oregon_water_samples:latitude ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oregon_water_samples:sample_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oregon_water_samples:bacteria ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$" ] ) ] ) ] ;
+            owl:onProperty oregon_water_samples:longitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oregon_water_samples:depth ],
+        [ a owl:Restriction ;
             owl:allValuesFrom linkml:Float ;
             owl:onProperty oregon_water_samples:depth ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oregon_water_samples:longitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oregon_water_samples:longitude ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oregon_water_samples:depth ],
@@ -68,34 +86,16 @@ oregon_water_samples:BioSample a owl:Class,
                                 owl:withRestrictions ( [ xsd:pattern "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?)$" ] ) ] ) ] ;
             owl:onProperty oregon_water_samples:latitude ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( linkml:Uriorcurie [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:string ;
+                                owl:withRestrictions ( [ xsd:pattern "^NCBITaxon:\\d+$" ] ) ] ) ] ;
             owl:onProperty oregon_water_samples:bacteria ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:longitude ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oregon_water_samples:sample_type ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oregon_water_samples:sample_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oregon_water_samples:longitude ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oregon_water_samples:sample_type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:intersectionOf ( linkml:Float [ a rdfs:Datatype ;
-                                owl:onDatatype xsd:string ;
-                                owl:withRestrictions ( [ xsd:pattern "^[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$" ] ) ] ) ] ;
-            owl:onProperty oregon_water_samples:longitude ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oregon_water_samples:depth ],
         oregon_water_samples:NamedThing ;
-    skos:definition "Represents a BioSample" ;
+    skos:definition "A hypothetical collection of attributes that represent a sample of water from a specific  location and depth with associated bacterial composition." ;
     skos:exactMatch oregon_water_samples:BioSample ;
     skos:inScheme <https://w3id.org/sierra-moxon/oregon-water-samples> .
 

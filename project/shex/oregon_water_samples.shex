@@ -63,7 +63,7 @@ linkml:Sparqlpath xsd:string
 }
 
 <NamedThing>  (
-    CLOSED {
+    {
        (  $<NamedThing_tes> rdf:type . * ;
           rdf:type [ schema1:Thing ]
        )

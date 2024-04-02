@@ -1,4 +1,4 @@
-// Represents a BioSample
+// A hypothetical collection of attributes that represent a sample of water from a specific  location and depth with associated bacterial composition.
 message BioSample
  {
   uriorcurie id = 0
@@ -12,9 +12,4 @@ message BioSample
 message BioSampleCollection
  {
  repeated  bioSample entries = 0
- }
-// A generic grouping for any identifiable entity
-message NamedThing
- {
-  uriorcurie id = 0
  }

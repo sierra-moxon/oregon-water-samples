@@ -1,5 +1,5 @@
 # Auto generated from oregon_water_samples.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-04-02T15:23:53
+# Generation date: 2024-04-02T15:37:35
 # Schema: oregon-water-samples
 #
 # id: https://w3id.org/sierra-moxon/oregon-water-samples
@@ -77,7 +77,8 @@ class NamedThing(YAMLRoot):
 @dataclass
 class BioSample(NamedThing):
     """
-    Represents a BioSample
+    A hypothetical collection of attributes that represent a sample of water from a specific location and depth with
+    associated bacterial composition.
     """
     _inherited_slots: ClassVar[List[str]] = []
 

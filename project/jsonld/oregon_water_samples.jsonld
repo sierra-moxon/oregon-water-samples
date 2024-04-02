@@ -482,6 +482,7 @@
       "mappings": [
         "schema:Thing"
       ],
+      "abstract": true,
       "slots": [
         "id"
       ],
@@ -492,7 +493,7 @@
     {
       "name": "BioSample",
       "definition_uri": "https://w3id.org/sierra-moxon/oregon-water-samples/BioSample",
-      "description": "Represents a BioSample",
+      "description": "A hypothetical collection of attributes that represent a sample of water from a specific  location and depth with associated bacterial composition.",
       "from_schema": "https://w3id.org/sierra-moxon/oregon-water-samples",
       "mappings": [
         "oregon_water_samples:BioSample"
@@ -538,9 +539,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "oregon_water_samples.yaml",
-  "source_file_date": "2024-04-02T15:23:50",
-  "source_file_size": 2291,
-  "generation_date": "2024-04-02T15:23:53",
+  "source_file_date": "2024-04-02T15:37:26",
+  "source_file_size": 2441,
+  "generation_date": "2024-04-02T15:37:34",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/oregon_water_samples.context.jsonld",

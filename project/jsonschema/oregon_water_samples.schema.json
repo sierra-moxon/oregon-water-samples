@@ -2,7 +2,7 @@
     "$defs": {
         "BioSample": {
             "additionalProperties": false,
-            "description": "Represents a BioSample",
+            "description": "A hypothetical collection of attributes that represent a sample of water from a specific  location and depth with associated bacterial composition.",
             "properties": {
                 "bacteria": {
                     "description": "The bacteria, represented by a NCBITaxon identifier, present in a sample",
@@ -64,7 +64,7 @@
         },
         "BioSample__identifier_optional": {
             "additionalProperties": false,
-            "description": "Represents a BioSample",
+            "description": "A hypothetical collection of attributes that represent a sample of water from a specific  location and depth with associated bacterial composition.",
             "properties": {
                 "bacteria": {
                     "description": "The bacteria, represented by a NCBITaxon identifier, present in a sample",
@@ -99,21 +99,6 @@
             },
             "required": [],
             "title": "BioSample",
-            "type": "object"
-        },
-        "NamedThing": {
-            "additionalProperties": false,
-            "description": "A generic grouping for any identifiable entity",
-            "properties": {
-                "id": {
-                    "description": "A unique identifier for a thing",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "NamedThing",
             "type": "object"
         },
         "SampleTypeEnum": {

@@ -13,7 +13,7 @@ type BioSampleCollection
     entries: [BioSample]
   }
 
-type NamedThing
+interface NamedThing
   {
     id: Uriorcurie!
   }

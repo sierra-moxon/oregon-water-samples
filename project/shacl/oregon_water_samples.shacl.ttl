@@ -5,7 +5,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 schema1:Thing a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:description "A generic grouping for any identifiable entity" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "A unique identifier for a thing" ;
@@ -26,27 +26,27 @@ oregon_water_samples:BioSampleCollection a sh:NodeShape ;
 
 oregon_water_samples:BioSample a sh:NodeShape ;
     sh:closed true ;
-    sh:description "Represents a BioSample" ;
+    sh:description "A hypothetical collection of attributes that represent a sample of water from a specific  location and depth with associated bacterial composition." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "The bacteria, represented by a NCBITaxon identifier, present in a sample" ;
-            sh:order 4 ;
-            sh:path oregon_water_samples:bacteria ;
-            sh:pattern "^NCBITaxon:\\d+$" ],
+    sh:property [ sh:datatype xsd:float ;
+            sh:description "The depth of the water sample in centimeters" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path oregon_water_samples:depth ],
+        [ sh:description "The type of sample" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path oregon_water_samples:sample_type ],
         [ sh:datatype xsd:float ;
             sh:description "The longitude of the water sample" ;
             sh:maxCount 1 ;
             sh:order 3 ;
             sh:path oregon_water_samples:longitude ;
             sh:pattern "^[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$" ],
-        [ sh:description "The type of sample" ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path oregon_water_samples:sample_type ],
-        [ sh:datatype xsd:float ;
-            sh:description "The depth of the water sample in centimeters" ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path oregon_water_samples:depth ],
+        [ sh:description "The bacteria, represented by a NCBITaxon identifier, present in a sample" ;
+            sh:order 4 ;
+            sh:path oregon_water_samples:bacteria ;
+            sh:pattern "^NCBITaxon:\\d+$" ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
