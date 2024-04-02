@@ -201,6 +201,9 @@
 </a>
 <h1 id="class-namedthing">Class: NamedThing</h1>
 <p><em>A generic grouping for any identifiable entity</em></p>
+<ul>
+<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
+</ul>
 <p>URI: <a href="http://schema.org/Thing">schema:Thing</a></p>
 <div class="mermaid"> classDiagram
     class NamedThing
@@ -267,6 +270,7 @@
 <pre><code class="language-yaml">name: NamedThing
 description: A generic grouping for any identifiable entity
 from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
+abstract: true
 slots:
 - id
 class_uri: schema:Thing
@@ -278,6 +282,7 @@ class_uri: schema:Thing
 <pre><code class="language-yaml">name: NamedThing
 description: A generic grouping for any identifiable entity
 from_schema: https://w3id.org/sierra-moxon/oregon-water-samples
+abstract: true
 attributes:
   id:
     name: id
